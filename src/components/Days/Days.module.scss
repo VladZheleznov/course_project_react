@@ -1,0 +1,55 @@
+.days {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   padding: 20px;
+   width: 100%;
+   background-color: #fff;
+   box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.25);
+   border-radius: 20px;
+ }
+ 
+ .cards {
+   display: flex;
+   flex-direction: column;
+   background-color: rgba(71, 147, 255, 0.20);
+   border-radius: 10px;
+   padding: 10px;
+   width: 149px;
+   transition: 0.3s;
+   cursor: pointer;
+ 
+   .day {
+     margin-bottom: 7px;
+     font-size: 18px;
+     color: #000;
+   }
+ 
+   .day__info {
+     font-size: 14px;
+     margin-bottom: 12px;
+     color: #939cb0;
+   }
+   .img {
+     margin-bottom: 12px;
+   }
+ 
+   .temp__day {
+     font-size: 18px;
+     color: #000;
+   }
+ 
+   .temp__night {
+     font-size: 13px;
+     color: #939cb0;
+     margin-bottom: 6px;
+   }
+   .info {
+     font-size: 13px;
+     color: #939cb0;
+   }
+ 
+   &:hover {
+     box-shadow: 0px 3px 20px rgba(147, 144, 144, 0.28);
+   }
+ }
