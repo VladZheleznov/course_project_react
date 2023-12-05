@@ -20,6 +20,10 @@ const Header = () => {
          border: "none",
          borderRadius: "10px",
          zIndex: 100,
+         cursor: "pointer",
+         ':hover': {
+            backgroundColor: "rgba(71, 147, 255, 0.30)",
+          },
 
       })
    }

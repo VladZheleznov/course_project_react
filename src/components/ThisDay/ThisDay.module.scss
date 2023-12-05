@@ -23,7 +23,13 @@
       color: #4793FF;
    }
    .this__day_name{
-      font-size: 40px;
+      font-size: 30px;
+      color: #000;
+      margin-bottom: 5px;
+   }
+   .this__day_weekday,
+   .this__day_monthday{
+      font-size: 20px;
       color: #000;
    }
 }

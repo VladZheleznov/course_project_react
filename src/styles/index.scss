@@ -16,3 +16,9 @@ body{
    margin: 0 auto;
    padding-top: 20px;
 }
+
+.wrapper{
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 30px;
+}
