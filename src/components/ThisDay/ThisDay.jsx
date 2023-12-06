@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import s from './ThisDay.module.scss'
 import GlobalSvgSelector from '../../assets/icons/global/GlobalSvgSelector'
 
-const ThisDay = () => {
+const ThisDay = ({ temp, icon }) => {
+   
    const [time, setTime] = useState(new Date().toLocaleTimeString().slice(0, -3));
    useEffect(() => {
       const interval = setInterval(() => {
@@ -19,12 +20,12 @@ const ThisDay = () => {
      <div className={s.this__day}>
         <div className={s.top__block}>
            <div className={s.top__block_wrapper}>
-              <div className={s.this__temp}>-8°</div>
+              <div className={s.this__temp}>{temp}</div>
               <div className={s.this__day_name}>Сегодня</div>
               <div className={s.this__day_weekday}>{weekDay}</div>
               <div className={s.this__day_monthday}>{monthDay}</div>
            </div>
-           <GlobalSvgSelector id='sun'/>
+           <GlobalSvgSelector id={icon}/>
         </div>
         <div className={s.bottom__block}>
            <div className={s.this__time}>

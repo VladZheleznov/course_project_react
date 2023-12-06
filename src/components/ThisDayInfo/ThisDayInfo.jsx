@@ -3,27 +3,27 @@ import s from './ThisDayInfo.module.scss'
 import cloud from '../../assets/images/cloud.png'
 import IndicatorSvgSelector from '../../assets/icons/indicators/IndicatorSvgSelector';
 
-const ThisDayInfo = () => {
+const ThisDayInfo = ({temp, feelsLikeTemp, pressure, description, wind}) => {
    const items = [
       {
         icon_id: 'temp',
         name: 'Температура',
-        value: '-8° - ощущается как -11°',
+        value: `${temp} - ощущается как ${feelsLikeTemp}`,
       },
       {
         icon_id: 'pressure',
         name: 'Давление',
-        value: '765 мм ртутного столба - нормальное',
+        value: `${pressure} гПа`,
       },
       {
         icon_id: 'precipitation',
         name: 'Осадки',
-        value: 'Без осадков',
+        value: `${description}`,
       },
       {
         icon_id: 'wind',
         name: 'Ветер',
-        value: '4 м/с северо-восток - легкий ветер',
+        value: `${wind} м/с`,
       },
    ];
 

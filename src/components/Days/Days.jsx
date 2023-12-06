@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './Days.module.scss'
 import GlobalSvgSelector from '../../assets/icons/global/GlobalSvgSelector';
+import axios from 'axios';
 
 const Days = () => {
+
+  const [weatherFor5Days, setWeatherFor5Days] = useState([])
+  useEffect(() => {
+    let city = 'Mozyr';
+    axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=a39e60787450378f4ee1c33503b74cfe&units=metric&lang=ru`)
+      .then(data => setWeatherFor5Days(data.data.list.slice(0,7)));
+  }, []);
 
   const weekDay = new Date();
   const monthDay = new Date();
@@ -64,16 +72,16 @@ const Days = () => {
   
   return (
      <div className={s.days}>
-        {days.map(day => (
-           <div key={day.day} className={s.cards}>
+        {weatherFor5Days.map((day, index) => (
+           <div key={day.index} className={s.cards}>
                <div className={s.day}>{getWeekDay(weekDay)}</div>
                <div className={s.day__info}>{getDateMonth(monthDay)}</div>
                <div className={s.img}>
-               <GlobalSvgSelector id={day.icon_id} />
+               <GlobalSvgSelector id={day.weather[0].icon} />
                </div>
-               <div className={s.temp__day}>{day.temp_day}</div>
-               <div className={s.temp__night}>{day.temp_day}</div>
-               <div className={s.info}>{day.info}</div>
+               <div className={s.temp__day}>{Math.round(day.main.temp)}</div>
+               <div className={s.temp__night}>{Math.round(day.main.feels_like)}</div>
+               <div className={s.info}>{day.weather[0].description}</div>
            </div>
         ))}
     </div>
