@@ -11,16 +11,23 @@ function App() {
   const [mainInfo, setMainInfo] = useState({});
   const [weatherInfo, setWeatherInfo] = useState([]);
   const [windInfo, setWindInfo] = useState({});
+  const [cityReq, setCityReq] = useState('Минск');
+  const [cityResp, setCityResp] = useState('');
+
+  const handleClick = value => {
+    setCityReq(value);
+  }
 
   useEffect(() => {
-    let city = 'Mozyr';
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a39e60787450378f4ee1c33503b74cfe&units=metric&lang=ru`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityReq}&appid=a39e60787450378f4ee1c33503b74cfe&units=metric&lang=ru`)
       .then(data => (
         setMainInfo(data.data.main),
         setWeatherInfo(data.data.weather[0]),
-        setWindInfo(data.data.wind)
-      ));
-  }, []);
+        setWindInfo(data.data.wind),
+        setCityResp(data.data.name)
+      ))
+      .catch(() => alert('Ошибка ввода!'))
+  }, [cityReq]);
 
   const currentTemp = Math.round(mainInfo.temp) + '°';
   const feelLikesTemp = Math.round(mainInfo.feels_like) + '°';
@@ -28,15 +35,18 @@ function App() {
   const description = weatherInfo.description;
   const wind = windInfo.speed;
   const icon = weatherInfo.icon;
+  
+
 
   return (
     <div className="App">
       <div className="container">
-        <Header />
+        <Header onClick={handleClick}/>
           <div className="wrapper">
           <ThisDay
             temp={currentTemp}
             icon={icon}
+            city={cityResp}
           />
           <ThisDayInfo
             temp={currentTemp}
@@ -46,7 +56,7 @@ function App() {
             wind={wind}
           />
           </div>
-            <Days />
+            <Days city={cityReq}/>
       </div>
     </div>
   );

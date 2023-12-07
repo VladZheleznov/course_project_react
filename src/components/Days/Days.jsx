@@ -3,14 +3,14 @@ import s from './Days.module.scss'
 import GlobalSvgSelector from '../../assets/icons/global/GlobalSvgSelector';
 import axios from 'axios';
 
-const Days = () => {
+const Days = ({city}) => {
 
   const [weatherFor5Days, setWeatherFor5Days] = useState([])
   useEffect(() => {
-    let city = 'Mozyr';
     axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=a39e60787450378f4ee1c33503b74cfe&units=metric&lang=ru`)
-      .then(data => setWeatherFor5Days(data.data.list.slice(0,7)));
-  }, []);
+      .then(data => setWeatherFor5Days(data.data.list.slice(0, 7)))
+      .catch(() => alert('Ошибка ввода!'))
+  }, [city]);
 
   const weekDay = new Date();
   const monthDay = new Date();

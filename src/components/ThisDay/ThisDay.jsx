@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import s from './ThisDay.module.scss'
 import GlobalSvgSelector from '../../assets/icons/global/GlobalSvgSelector'
 
-const ThisDay = ({ temp, icon }) => {
+const ThisDay = ({ temp, icon, city }) => {
    
    const [time, setTime] = useState(new Date().toLocaleTimeString().slice(0, -3));
    useEffect(() => {
@@ -32,7 +32,7 @@ const ThisDay = ({ temp, icon }) => {
               Время: <span>{time}</span>
            </div>
            <div className={s.this__city}>
-              Город: <span>Минск</span>
+              Город: <span>{city}</span>
            </div>
         </div>
     </div>

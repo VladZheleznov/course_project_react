@@ -1,43 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import s from "./Header.module.scss"
 import GlobalSvgSelector from '../../assets/icons/global/GlobalSvgSelector'
-import Select from 'react-select'
 
-const Header = () => {
+const Header = ({onClick}) => {
    
-   const options = [
-      { value: 'city-1', label: 'Минск' },
-      { value: 'city-2', label: 'Мозырь' },
-      { value: 'city-3', label: 'Молодечно' }
-   ]
-   
-   const colourStyles = {
-      control: styles => ({
-         ...styles,
-         backgroundColor: "rgba(71, 147, 255, 0.20)",
-         width: "194px",
-         height: "37px",
-         border: "none",
-         borderRadius: "10px",
-         zIndex: 100,
-         ':hover': {
-            backgroundColor: "rgba(71, 147, 255, 0.30)",
-            cursor: "text",
-         },
+   const [value, setValue] = useState('');
 
-      })
+   const handleClick = () => {
+      onClick(value);
    }
-
+   
   return (
      <header className={s.header}>
         <div className={s.wrapper}>
            <div className={s.logo}><GlobalSvgSelector id="header-logo" /></div>
            <div className={s.title}>Weather forecast</div>
         </div>
-        <Select
-           defaultValue={options[0]}
-           styles={colourStyles}
-           options={options} />
+        <form>
+           <input
+              type="text"
+              className={s.input}
+              placeholder='Введите город'
+              value={value}
+              onChange={e => setValue(e.target.value)}
+           />
+           <input
+              className={s.button}
+              type="submit"
+              value={'Ok'}
+              onClick={handleClick}
+           />
+        </form>
     </header>
   )
 }
