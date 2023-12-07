@@ -16,7 +16,7 @@ const Header = ({onClick}) => {
            <div className={s.logo}><GlobalSvgSelector id="header-logo" /></div>
            <div className={s.title}>Weather forecast</div>
         </div>
-        <form>
+        <form action='#'>
            <input
               type="text"
               className={s.input}
